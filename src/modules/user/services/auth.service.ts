@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import * as bcrypt from 'bcrypt';
 import { Repository } from 'typeorm';
@@ -32,6 +32,7 @@ export class AuthService {
     }
 
     async registerUser(user: UserCreate): Promise<UserInfo> {
+        console.log(user);
         const userCreated = await this.userService.createUser(user);
 
         return {
@@ -56,11 +57,11 @@ export class AuthService {
 
     async login(user: UserLogin): Promise<UserInfo> {
         const userFind = await this.validateLogin(user.username);
-        if (!userFind) throw new Error(`User ${user.username} not fund`);
+        if (!userFind) throw new HttpException(`User ${user.username} not fund`, 403);
 
         const checkPassword = await bcrypt.compare(user.password, userFind.password);
 
-        if (!checkPassword) throw new Error(`password error, try again`);
+        if (!checkPassword) throw new HttpException(`password error, try again`, 403);
 
         return {
             accessToken: this.createToken(

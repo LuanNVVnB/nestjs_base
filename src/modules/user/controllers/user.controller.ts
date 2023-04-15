@@ -1,31 +1,22 @@
-import { Controller, Post, ValidationPipe } from '@nestjs/common';
-import { UserService } from '../services/user.service';
-import { Body, UsePipes } from '@nestjs/common/decorators';
-import { UserCreate, UserLogin } from '../dtos/user.dto';
+import { ClassSerializerInterceptor, Controller, Post } from '@nestjs/common';
+import { Body, Get, UseInterceptors } from '@nestjs/common/decorators';
+import { UserCreate } from '../dtos/user.dto';
 import { User } from '../entities/user.entity';
-import { AuthService } from '../services/auth.service';
-import { UserInfo } from '../dtos/token.dto';
+import { UserService } from '../services/user.service';
+import { transformClass } from '../../../utils/helper/transformerClass';
 @Controller('user')
 export class UserController {
-    constructor(private readonly userService: UserService, private readonly authService: AuthService) {}
+    constructor(private readonly userService: UserService) {}
 
-    @UsePipes(new ValidationPipe())
     @Post()
     createUser(@Body() user: UserCreate): Promise<User> {
-        return this.userService.createUser(user);
+        const userTransform = transformClass(UserCreate, user);
+        return this.userService.createUser(userTransform);
     }
 
-    @UsePipes(new ValidationPipe())
-    @Post('signup')
-    registerUser(@Body() user: UserCreate): Promise<UserInfo> {
-        return this.authService.registerUser(user);
-    }
-
-    @UsePipes(new ValidationPipe())
-    @Post('singing')
-    loginUser(@Body() user: UserLogin): Promise<UserInfo> {
-        return this.authService.login(user);
+    @UseInterceptors(ClassSerializerInterceptor)
+    @Get()
+    getUser(): Promise<User[]> {
+        return this.userService.getUser();
     }
 }
-
-

@@ -5,6 +5,7 @@ import { UserController } from './controllers/user.controller';
 import { User } from './entities/user.entity';
 import { AuthService } from './services/auth.service';
 import { JwtModule } from '@nestjs/jwt';
+import { AuthController } from './controllers/auth.controller';
 
 const { EXPIRES } = process.env;
 
@@ -17,6 +18,6 @@ const { EXPIRES } = process.env;
         }),
     ],
     providers: [UserService, AuthService],
-    controllers: [UserController],
+    controllers: [UserController, AuthController],
 })
 export class UsersModule {}

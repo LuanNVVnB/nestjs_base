@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import * as bcrypt from 'bcrypt';
 import { Repository } from 'typeorm';
@@ -12,15 +12,21 @@ export class UserService {
         private usersRepository: Repository<User>
     ) {}
 
+    async getUser(): Promise<User[]> {
+        return await this.usersRepository.find();
+    }
+
     async validateUser(username: string, email: string): Promise<boolean> {
         const userFind = await this.usersRepository.findOne({
             where: [{ username: username }, { email: email }],
         });
+
         return userFind ? true : false;
     }
 
     async createUser(user: UserCreate): Promise<User> {
-        if (this.validateUser(user.username, user.email)) throw new Error(`User ${user.username} already exists`);
+        if (!this.validateUser(user.username, user.email))
+            throw new HttpException(`User ${user.username} not fund`, 403);
 
         user.password = await bcrypt.hash(user.password, +SALT_ROUNDS);
 

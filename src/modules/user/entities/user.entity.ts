@@ -1,5 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 import { UserRole } from '../dtos/user.dto';
+import { Exclude } from 'class-transformer';
+import { BaseEntity } from '../../../baseModules/entity.base';
 
 export interface IUser {
     id: string;
@@ -11,7 +13,7 @@ export interface IUser {
 }
 
 @Entity()
-export class User implements IUser {
+export class User extends BaseEntity implements IUser {
     @PrimaryGeneratedColumn('uuid')
     id: string;
 
@@ -19,6 +21,7 @@ export class User implements IUser {
     username: string;
 
     @Column()
+    @Exclude()
     password: string;
 
     @Column()
