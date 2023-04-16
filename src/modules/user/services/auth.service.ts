@@ -32,7 +32,6 @@ export class AuthService {
     }
 
     async registerUser(user: UserCreate): Promise<UserInfo> {
-        console.log(user);
         const userCreated = await this.userService.createUser(user);
 
         return {

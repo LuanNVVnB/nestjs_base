@@ -1,30 +1,18 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+## NODE v18
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+## database pg
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## migrations generate
 
-## Description
+```
+yarn migrations:generate
+```
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## migrations run
+
+```
+yarn migrations:run
+```
 
 ## Installation
 
@@ -45,29 +33,74 @@ $ yarn run start:dev
 $ yarn run start:prod
 ```
 
-## Test
-
-```bash
-# unit tests
-$ yarn run test
-
-# e2e tests
-$ yarn run test:e2e
-
-# test coverage
-$ yarn run test:cov
-```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
 ## License
 
 Nest is [MIT licensed](LICENSE).
+
+## test signup
+
+POST: http://localhost:3000/user/signup
+
+```
+{
+    "email":"nvvluan.it@gmail.com",
+    "password":"sdfasfd",
+    "username":"nguyen vv luan",
+    "age":"hsda",
+    "avatar":"nvvvssds"
+}
+```
+
+```
+{
+  "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImIxMmM0MWVkLTU5OTMtNDk4ZS1iYTYxLTRmZDY4Mjk3ZjQ0OCIsInVzZXJuYW1lIjoibmd1eWVuIHZ2IGx1YW4iLCJlbWFpbCI6Im5ubHVhbkBnbWFpbC5jb20iLCJpYXQiOjE2ODE2MTIxODUsImV4cCI6MTY4MTY5ODU4NX0.GEyb3Pr3rocN5SqhMUpL4TO2ZpcJ_xovWDbxxatsBC0",
+  "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImIxMmM0MWVkLTU5OTMtNDk4ZS1iYTYxLTRmZDY4Mjk3ZjQ0OCIsInVzZXJuYW1lIjoibmd1eWVuIHZ2IGx1YW4iLCJlbWFpbCI6Im5ubHVhbkBnbWFpbC5jb20iLCJpYXQiOjE2ODE2MTIxODUsImV4cCI6MTY4MTY5ODU4NX0.bIpBH9-LpXET_aUt21HxWXDpXRg5AOBSc8uX5jOhQuY"
+
+}
+```
+
+## test signing
+
+POST: http://localhost:3000/user/singing
+
+```
+{
+   "email":"nvvluan.it@gmail.com",
+    "password":"sdfasfd",
+}
+```
+
+```
+{
+  "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImIxMmM0MWVkLTU5OTMtNDk4ZS1iYTYxLTRmZDY4Mjk3ZjQ0OCIsInVzZXJuYW1lIjoibmd1eWVuIHZ2IGx1YW4iLCJlbWFpbCI6Im5ubHVhbkBnbWFpbC5jb20iLCJpYXQiOjE2ODE2MTIxODUsImV4cCI6MTY4MTY5ODU4NX0.GEyb3Pr3rocN5SqhMUpL4TO2ZpcJ_xovWDbxxatsBC0",
+  "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImIxMmM0MWVkLTU5OTMtNDk4ZS1iYTYxLTRmZDY4Mjk3ZjQ0OCIsInVzZXJuYW1lIjoibmd1eWVuIHZ2IGx1YW4iLCJlbWFpbCI6Im5ubHVhbkBnbWFpbC5jb20iLCJpYXQiOjE2ODE2MTIxODUsImV4cCI6MTY4MTY5ODU4NX0.bIpBH9-LpXET_aUt21HxWXDpXRg5AOBSc8uX5jOhQuY"
+
+}
+```
+
+## call get all user
+
+GET: http://localhost:3000/user
+
+```
+[
+    {
+        "createAt": "2023-04-15T16:09:45.046Z",
+        "updateAt": "2023-04-15T16:09:45.046Z",
+        "id": "0d043f26-e85b-4877-8cf4-844068c38345",
+        "username": "nguyen luan",
+        "age": 21,
+        "role": "ghost",
+        "email": "nbblaun@gmail.com"
+    },
+    {
+        "createAt": "2023-04-15T16:09:45.046Z",
+        "updateAt": "2023-04-15T16:09:45.046Z",
+        "id": "b12c41ed-5993-498e-ba61-4fd68297f448",
+        "username": "nguyen vv luan",
+        "age": 21,
+        "role": "ghost",
+        "email": "nnluan@gmail.com"
+    },
+]
+```

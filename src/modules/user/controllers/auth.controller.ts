@@ -10,16 +10,15 @@ export class AuthController {
 
     @Post('signup')
     registerUser(@Body() user: UserCreate): Promise<UserInfo> {
-        console.log(user);
         const userTransform = transformClass(UserCreate, user);
-        console.log(userTransform);
+
         return this.authService.registerUser(userTransform);
     }
 
     @Post('singing')
     loginUser(@Body() user: UserLogin): Promise<UserInfo> {
         const userTransform = transformClass(UserLogin, user);
-        console.log(userTransform);
-        return this.authService.login(user);
+
+        return this.authService.login(userTransform);
     }
 }

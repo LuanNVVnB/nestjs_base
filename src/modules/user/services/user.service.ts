@@ -20,12 +20,12 @@ export class UserService {
         const userFind = await this.usersRepository.findOne({
             where: [{ username: username }, { email: email }],
         });
-
-        return userFind ? true : false;
+        if (userFind) return true;
+        return false;
     }
 
     async createUser(user: UserCreate): Promise<User> {
-        if (!this.validateUser(user.username, user.email))
+        if (await this.validateUser(user.username, user.email))
             throw new HttpException(`User ${user.username} not fund`, 403);
 
         user.password = await bcrypt.hash(user.password, +SALT_ROUNDS);
